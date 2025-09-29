@@ -18,6 +18,17 @@ function normalizeUKPhone(number) {
   else {
     num = '+44' + num;
   }
+
+  // make sure the number starts with +447 as all UK mobile numbers do
+  if (!num.startsWith('+44')) {
+    return null;
+  }
+
+  // also length should be 13 characters for UK mobile numbers
+  if (num.length !== 13) {
+    return null;
+  }
+
   return num;
 }
 
@@ -37,7 +48,7 @@ function downloadTxt() {
 export default function App() {
   function handleNormalize() {
     const lines = input.value.split('\n').map(line => line.trim()).filter(Boolean);
-    const normalized = lines.map(normalizeUKPhone);
+    const normalized = lines.map(normalizeUKPhone).filter(Boolean);
     output.value = normalized.join('\n');
   }
 
