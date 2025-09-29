@@ -23,34 +23,52 @@ export default function App() {
   }
 
   return (
-    <div style={{ maxWidth: 600, margin: "auto", padding: 30 }}>
-      <h2>UK Phone Number Normalizer</h2>
-      <label>
-        <div>Paste phone numbers (one per line):</div>
-        <textarea
-          rows={10}
-          style={{ width: '100%', marginBottom: 12 }}
-          value={input.value}
-          onInput={e => (input.value = e.target.value)}
-          placeholder={"e.g.\n07123456789\n+447987654321\n02071234567"}
-        />
-      </label>
-      <button onClick={handleNormalize} style={{ marginBottom: 12 }}>
-        Normalize
-      </button>
-      <label>
-        <div>Normalized numbers:</div>
-        <textarea
-          rows={10}
-          style={{ width: '100%' }}
-          value={output.value}
-          readOnly
-          placeholder="Normalized numbers will appear here"
-        />
-      </label>
-      <button onClick={downloadTxt} style={{ marginTop: 12 }}>
-        Download as .txt
-      </button>
+    <div className="app-container">
+      <div className="card">
+        <h1 className="title">UK Phone Number Normalizer</h1>
+
+        <div className="form-section">
+          <label className="label">
+            Paste phone numbers (one per line):
+          </label>
+          <textarea
+            className="textarea"
+            rows={10}
+            value={input.value}
+            onInput={e => (input.value = e.target.value)}
+            placeholder={"e.g.\n07123456789\n+447987654321\n02071234567"}
+          />
+        </div>
+
+        <div className="form-section">
+          <label className="label">
+            Normalized numbers:
+          </label>
+          <textarea
+            className="textarea textarea--readonly"
+            rows={10}
+            value={output.value}
+            readOnly
+            placeholder="Normalized numbers will appear here..."
+          />
+        </div>
+
+        <div className="button-container">
+          <button
+            className="button button--primary"
+            onClick={handleNormalize}
+          >
+            📱 Normalize Numbers
+          </button>
+
+          <button
+            className="button button--secondary"
+            onClick={downloadTxt}
+          >
+            💾 Download as .txt
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
